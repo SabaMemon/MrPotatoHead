@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdn.bootcss.com/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+
+    <title>Mr. Potato Head Builder</title>
+    <h1>Mr. Potato Head Builder</h1>
+    <style>
+        body {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* div {
+            margin: auto;
+        } */
+
+        #potatoring {
+            background-color:lightblue; width: 1200px; height: 750px;
+        }
+
+        #hat {
+            max-width: 250px;
+        }
+
+        #nose, #eyes, #mouth {
+            max-height: 150px;
+        }
+
+        canvas {
+            border:1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mr. Potato Head</h1>
+    
+    <p>Click and drag Mr. Potato Head's body parts to put him together!</p>
+    <p>Click on the "Save Creation" button if you'd like to download an image of your work.</p>
+    
+    <button id="bouton" onclick="DownloadCanvasAsImage()">Save Creation</button><br><br>
+
+    <div class = "potatoring" id = "potatoring">
+        <img id="body" src="./body.png">
+        <img id="mouth" src="./mouth.png">
+        <img id="nose" src="./file-5df64a80515c7.png">
+        <img id="eyes" src="./pngwing.com.png">
+        <img id="hat" src="./22-221860_bowler-hat-transparent-clip-art-png-imageu200b-gallery.png">
+    </div>
+
+
+    <!-- https://stackoverflow.com/questions/11452424/implement-dragging-an-image-within-a-canvas -->
+    <script>
+        //Allows for draggable elements
+        $(".potatoring img").draggable ();
+    </script>
+
+    <!-- https://stackoverflow.com/questions/36941042/convert-div-into-downloadable-image/47917770#comment61517994_36941042 -->
+    <script>
+        var btn = document.getElementById('bouton');
+
+        btn.onclick = function() {
+            domtoimage.toBlob(document.getElementById('potatoring'))
+            .then(function(blob) {
+                window.saveAs(blob, 'MyMrPotatoHead.png');
+            });
+        }
+    </script> 
+
+</body>
+</html>
